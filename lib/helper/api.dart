@@ -31,7 +31,7 @@ class Api {
       return jsonDecode(response.body);
     } else {
       throw Exception(
-          'Failed to load products , There is problem with status code ${response.statusCode}');
+          'Failed to load products , There is problem with status code ${response.statusCode} with body ${jsonDecode(response.body)}');
     }
   }
 
