@@ -8,8 +8,6 @@ void main() {
   runApp(const MyApp());
 }
 
-// Thanks for using our template. You are using the free version of the template.
-// 🔗 Full template: https://theflutterway.gumroad.com/l/fluttershop
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
