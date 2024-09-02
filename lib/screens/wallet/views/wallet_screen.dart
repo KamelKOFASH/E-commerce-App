@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop/constants.dart';
-import 'package:shop/models/product_model.dart';
+import 'package:shop/models/product_model_demo.dart';
 
 import 'components/wallet_balance_card.dart';
 import 'components/wallet_history_card.dart';
@@ -50,6 +50,7 @@ class WalletScreen extends StatelessWidget {
                           image: productDemoImg1,
                           title: "Mountain Warehouse for Women",
                           brandName: "Lipsy london",
+                          description: 'demy',
                           price: 540,
                           priceAfetDiscount: 420,
                           dicountpercent: 20,
@@ -57,6 +58,7 @@ class WalletScreen extends StatelessWidget {
                         ProductModel(
                           image: productDemoImg4,
                           title: "Mountain Beta Warehouse",
+                          description: 'demy',
                           brandName: "Lipsy london",
                           price: 800,
                         ),

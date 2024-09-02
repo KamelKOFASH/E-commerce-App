@@ -1,4 +1,4 @@
-import 'package:shop/models/product_model.dart';
+import 'package:shop/models/product_model_demo.dart';
 
 import '../helper/api.dart';
 

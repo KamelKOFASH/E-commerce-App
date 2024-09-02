@@ -1,5 +1,5 @@
 import '../helper/api.dart';
-import '../models/product_model.dart';
+import '../models/product_model_demo.dart';
 
 class AddProductService {
   Future<ProductModel> addProduct(
