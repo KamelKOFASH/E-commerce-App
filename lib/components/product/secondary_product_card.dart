@@ -16,7 +16,7 @@ class SecondaryProductCard extends StatelessWidget {
     this.style,
   });
   final String image, brandName, title;
-  final double price;
+  final dynamic price;
   final double? priceAfetDiscount;
   final int? dicountpercent;
   final VoidCallback? press;
@@ -38,7 +38,8 @@ class SecondaryProductCard extends StatelessWidget {
             aspectRatio: 1.15,
             child: Stack(
               children: [
-                NetworkImageWithLoader(image, radius: defaultBorderRadious),
+                NetworkImageWithLoader(image,
+                    fit: BoxFit.contain, radius: defaultBorderRadious),
                 if (dicountpercent != null)
                   Positioned(
                     right: defaultPadding / 2,

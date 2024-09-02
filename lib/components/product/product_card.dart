@@ -35,7 +35,8 @@ class ProductCard extends StatelessWidget {
             aspectRatio: 1.15,
             child: Stack(
               children: [
-                NetworkImageWithLoader(image, radius: defaultBorderRadious),
+                NetworkImageWithLoader(image,
+                    fit: BoxFit.contain, radius: defaultBorderRadious),
                 if (dicountpercent != null)
                   Positioned(
                     right: defaultPadding / 2,
