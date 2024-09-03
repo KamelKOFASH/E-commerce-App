@@ -17,7 +17,7 @@ class SecondaryProductCard extends StatelessWidget {
   });
   final String image, brandName, title;
   final dynamic price;
-  final double? priceAfetDiscount;
+  final dynamic priceAfetDiscount;
   final int? dicountpercent;
   final VoidCallback? press;
 
@@ -26,7 +26,7 @@ class SecondaryProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      onPressed: () {},
+      onPressed: press,
       style: style ??
           OutlinedButton.styleFrom(
               minimumSize: const Size(256, 114),

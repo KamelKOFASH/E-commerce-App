@@ -53,16 +53,22 @@ class PopularProducts extends StatelessWidget {
                       image: products[index].image,
                       brandName: products[index].category,
                       title: products[index].title,
-                      price: products[index].price,
+                      price: demoBestSellersProducts[
+                              index % demoBestSellersProducts.length]
+                          .priceAfetDiscount,
                       dicountpercent: demoFlashSaleProducts[
                               index % demoFlashSaleProducts.length]
                           .dicountpercent,
-                      priceAfetDiscount: demoBestSellersProducts[
-                              index % demoBestSellersProducts.length]
-                          .priceAfetDiscount,
+                      priceAfetDiscount: products[index].price,
                       press: () {
-                        Navigator.pushNamed(context, productDetailsScreenRoute,
-                            arguments: index.isEven);
+                        Navigator.pushNamed(
+                          context,
+                          productDetailsScreenRoute,
+                          arguments: {
+                            'isProductAvailable': true,
+                            'product': products[index],
+                          },
+                        );
                       },
                     ),
                   ),

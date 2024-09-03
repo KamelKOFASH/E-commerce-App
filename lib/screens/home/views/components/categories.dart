@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop/components/skleton/product/products_skelton.dart';
+import 'package:shop/models/product_model.dart';
 import 'package:shop/route/screen_export.dart';
+import 'package:shop/services/get_category_by_name.dart';
 
+import '../../../../components/product/product_card.dart';
 import '../../../../constants.dart';
 
 // For preview
@@ -16,18 +20,26 @@ class CategoryModel {
   });
 }
 
-List<CategoryModel> demoCategories = [
-  CategoryModel(name: "All Categories"),
+List<CategoryModel> categories = [
+  // CategoryModel(name: "All Categories"),
   CategoryModel(
       name: "Electronics",
       svgSrc: "assets/icons/Scan.svg",
-      route: onSaleScreenRoute),
-  CategoryModel(name: "Man's", svgSrc: "assets/icons/Man.svg"),
-  CategoryModel(name: "Woman’s", svgSrc: "assets/icons/Woman.svg"),
+      route: electronicsScreenRoute),
+  CategoryModel(
+    name: "Man's",
+    svgSrc: "assets/icons/Man.svg",
+    route: mensScreenRoute,
+  ),
+  CategoryModel(
+    name: "Woman’s",
+    svgSrc: "assets/icons/Woman.svg",
+    route: womensScreenRoute,
+  ),
   CategoryModel(
       name: "Jewelery",
       svgSrc: "assets/icons/diamond.svg",
-      route: kidsScreenRoute),
+      route: jewelleryScreenRoute),
 ];
 // End For Preview
 
@@ -43,19 +55,19 @@ class Categories extends StatelessWidget {
       child: Row(
         children: [
           ...List.generate(
-            demoCategories.length,
+            categories.length,
             (index) => Padding(
               padding: EdgeInsets.only(
                   left: index == 0 ? defaultPadding : defaultPadding / 2,
                   right:
-                      index == demoCategories.length - 1 ? defaultPadding : 0),
+                      index == categories.length - 1 ? defaultPadding : 0),
               child: CategoryBtn(
-                category: demoCategories[index].name,
-                svgSrc: demoCategories[index].svgSrc,
+                category: categories[index].name,
+                svgSrc: categories[index].svgSrc,
                 isActive: index == 0,
                 press: () {
-                  if (demoCategories[index].route != null) {
-                    Navigator.pushNamed(context, demoCategories[index].route!);
+                  if (categories[index].route != null) {
+                    Navigator.pushNamed(context, categories[index].route!);
                   }
                 },
               ),
@@ -120,6 +132,58 @@ class CategoryBtn extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CategoryGridView extends StatelessWidget {
+  const CategoryGridView({super.key, required this.category});
+  final String category;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'New Trend',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 65),
+        child: FutureBuilder<List<ProductModel2>>(
+          future: GetCategoryByNameService().getCategoryByName(category),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<ProductModel2> products = snapshot.data!;
+              return GridView.builder(
+                  itemCount: products.length,
+                  clipBehavior: Clip.none,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 1.5,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 100,
+                  ),
+                  itemBuilder: (context, index) {
+                    return ProductCard(
+                      image: products[index].image,
+                      brandName: products[index].category,
+                      title: products[index].title,
+                      price: products[index].price,
+                      press: () {},
+                    );
+                  });
+            } else {
+              return const ProductsSkelton();
+            }
+          },
         ),
       ),
     );

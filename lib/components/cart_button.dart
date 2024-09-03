@@ -11,7 +11,7 @@ class CartButton extends StatelessWidget {
     required this.press,
   });
 
-  final double price;
+  final dynamic price;
   final String title, subTitle;
   final VoidCallback press;
 

@@ -54,7 +54,8 @@ class _ProductImagesState extends State<ProductImages> {
                   borderRadius: const BorderRadius.all(
                     Radius.circular(defaultBorderRadious * 2),
                   ),
-                  child: NetworkImageWithLoader(widget.images[index]),
+                  child: NetworkImageWithLoader(
+                      fit: BoxFit.contain, widget.images[index]),
                 ),
               ),
             ),

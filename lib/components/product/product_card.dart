@@ -16,7 +16,7 @@ class ProductCard extends StatelessWidget {
 
   final String image, brandName, title;
   final dynamic price;
-  final double? priceAfetDiscount;
+  final dynamic priceAfetDiscount;
   final int? dicountpercent;
   final VoidCallback press;
 
@@ -35,8 +35,10 @@ class ProductCard extends StatelessWidget {
             aspectRatio: 1.15,
             child: Stack(
               children: [
+                //? image
                 NetworkImageWithLoader(image,
                     fit: BoxFit.contain, radius: defaultBorderRadious),
+                //? dicount
                 if (dicountpercent != null)
                   Positioned(
                     right: defaultPadding / 2,
@@ -65,6 +67,7 @@ class ProductCard extends StatelessWidget {
               ],
             ),
           ),
+          //? brand and title
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -74,6 +77,7 @@ class ProductCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  //* brand
                   Text(
                     brandName.toUpperCase(),
                     style: Theme.of(context)
@@ -82,6 +86,7 @@ class ProductCard extends StatelessWidget {
                         .copyWith(fontSize: 10),
                   ),
                   const SizedBox(height: defaultPadding / 2),
+                  //* title
                   Text(
                     title,
                     maxLines: 2,
@@ -92,6 +97,7 @@ class ProductCard extends StatelessWidget {
                         .copyWith(fontSize: 12),
                   ),
                   const Spacer(),
+                  //? price
                   priceAfetDiscount != null
                       ? Row(
                           children: [

@@ -1,16 +1,16 @@
-import 'package:shop/models/product_model_demo.dart';
 
 import '../helper/api.dart';
+import '../models/product_model.dart';
 
 class GetCategoryByNameService {
-  Future<List<ProductModel>> getCategoryByName(String name) async {
+  Future<List<ProductModel2>> getCategoryByName(String name) async {
     List<dynamic> data = await Api().get(
       url: "https://fakestoreapi.com/products/category/$name",
     );
-    List<ProductModel> productsList = [];
+    List<ProductModel2> productsList = [];
     for (int i = 0; i < data.length; i++) {
       productsList.add(
-        ProductModel.fromJson(data[i]),
+        ProductModel2.fromJson(data[i]),
       );
     }
     return productsList;

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shop/entry_point.dart';
 
+import '../models/product_model.dart';
+import '../screens/home/views/electronics/views/electronics_screen.dart';
+import '../screens/home/views/jewelery/views/jewelery_screen.dart';
+import '../screens/home/views/mans/views/mans_screen.dart';
+import '../screens/home/views/womens/views/womens_screen.dart';
 import 'screen_export.dart';
 
 // Yuo will get 50+ screens and more once you have the full template
@@ -129,11 +134,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //     builder: (context) => const SetupFaceIdScreen(),
     //   );
     case productDetailsScreenRoute:
+      final args = settings.arguments as Map<String, dynamic>;
+      final isProductAvailable = args['isProductAvailable'] as bool;
+      final product = args['product'] as ProductModel2;
       return MaterialPageRoute(
-        builder: (context) {
-          bool isProductAvailable = settings.arguments as bool? ?? true;
-          return ProductDetailsScreen(isProductAvailable: isProductAvailable);
-        },
+        builder: (context) => ProductDetailsScreen(
+            isProductAvailable: isProductAvailable, product: product),
       );
     case productReviewsScreenRoute:
       return MaterialPageRoute(
@@ -166,6 +172,22 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case onSaleScreenRoute:
       return MaterialPageRoute(
         builder: (context) => const OnSaleScreen(),
+      );
+    case electronicsScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const ElectronicsScreen(),
+      );
+    case mensScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const MensScreen(),
+      );
+    case womensScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const WomensScreen(),
+      );
+    case jewelleryScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const JewelleryScreen(),
       );
     case kidsScreenRoute:
       return MaterialPageRoute(

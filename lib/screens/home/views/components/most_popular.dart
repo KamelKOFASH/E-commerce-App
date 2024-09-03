@@ -6,7 +6,6 @@ import 'package:shop/components/skleton/product/secondery_produts_skelton.dart';
 import 'package:shop/models/product_model.dart';
 import 'package:shop/models/product_model_demo.dart';
 
-import '../../../../components/skleton/product/products_skelton.dart';
 import '../../../../constants.dart';
 import '../../../../route/route_constants.dart';
 import '../../../../services/get_all_product_service.dart';
@@ -67,16 +66,19 @@ class MostPopular extends StatelessWidget {
                       image: randomProducts[index].image,
                       brandName: randomProducts[index].category,
                       title: randomProducts[index].title,
-                      price: randomProducts[index].price,
-                      priceAfetDiscount: demoPopularProducts[
+                      price: demoPopularProducts[
                               index % demoPopularProducts.length]
                           .priceAfetDiscount,
+                      priceAfetDiscount: randomProducts[index].price,
                       dicountpercent: demoPopularProducts[
                               index % demoPopularProducts.length]
                           .dicountpercent,
                       press: () {
                         Navigator.pushNamed(context, productDetailsScreenRoute,
-                            arguments: index.isEven);
+                            arguments: {
+                              'isProductAvailable': true,
+                              'product': randomProducts[index],
+                            });
                       },
                     ),
                   ),
