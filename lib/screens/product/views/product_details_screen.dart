@@ -1,7 +1,5 @@
 import 'package:awesome_icons/awesome_icons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:shop/components/buy_full_ui_kit.dart';
 import 'package:shop/components/cart_button.dart';
 import 'package:shop/components/custom_modal_bottom_sheet.dart';
@@ -155,7 +153,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: EdgeInsets.all(defaultPadding),
+                padding: const EdgeInsets.all(defaultPadding),
                 child: ReviewCard(
                   rating: widget.product.rating!.rate,
                   numOfReviews: widget.product.rating!.count,

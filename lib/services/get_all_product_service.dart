@@ -6,7 +6,7 @@ import '../models/product_model.dart';
 class GetAllProductService {
   Future<List<ProductModel>> getAllProducts() async {
     List<dynamic> data =
-        await Api().get(url: "https://fakestoreapi.com/products");
+        await Api().get(url: "https://fakestoreapi.com/products", token: '');
 
     List<ProductModel> productsList = [];
 
@@ -20,7 +20,7 @@ class GetAllProductService {
 
    Future<List<ProductModel2>> getAllProducts2() async {
     List<dynamic> data =
-        await Api().get(url: "https://fakestoreapi.com/products");
+        await Api().get(url: "https://fakestoreapi.com/products", token: '');
 
     List<ProductModel2> productsList = [];
 

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop/screens/onbording/views/onbording_screnn.dart';
 
-import 'screens/home/views/home_screen.dart';
 
 class AnimatedSplashScreen extends StatefulWidget {
+  const AnimatedSplashScreen({super.key});
+
   @override
   _AnimatedSplashScreenState createState() => _AnimatedSplashScreenState();
 }

@@ -73,7 +73,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case splashScreenRoute:
       return MaterialPageRoute(
-        builder: (context) => AnimatedSplashScreen(),
+        builder: (context) => const AnimatedSplashScreen(),
       );
     case onbordingScreenRoute:
       return MaterialPageRoute(

@@ -1,11 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import '../constants.dart';
 
 class BuyFullKit extends StatefulWidget {
   const BuyFullKit({super.key, required this.images});
@@ -17,7 +13,6 @@ class BuyFullKit extends StatefulWidget {
 }
 
 class _BuyFullKitState extends State<BuyFullKit> {
-  bool _isCopied = false;
   late PageController _pageController;
   late Timer _timer;
   int _currentPage = 0;

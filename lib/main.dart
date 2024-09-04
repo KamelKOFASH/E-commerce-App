@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shop/route/route_constants.dart';
 import 'package:shop/route/router.dart' as router;
 import 'package:shop/route/screen_export.dart';
-import 'package:shop/screens/home/views/home_screen.dart';
-import 'package:shop/splash_screen.dart';
 import 'package:shop/theme/app_theme.dart';
 
-import 'screens/update_product/update_product.dart';
 
 void main() {
   runApp(const MyApp());
