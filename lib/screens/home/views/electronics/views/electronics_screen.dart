@@ -29,10 +29,11 @@ class ElectronicsScreen extends StatelessWidget {
             List<ProductModel2> products = snapshot.data!;
             return GridView.builder(
                 itemCount: products.length,
+                padding: const EdgeInsets.all(defaultPadding),
                 clipBehavior: Clip.none,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.7,
+                  childAspectRatio: 0.67,
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                 ),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:shop/components/Banner/S/banner_s_style_1.dart';
 import 'package:shop/components/Banner/S/banner_s_style_5.dart';
@@ -15,12 +17,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: OffersCarouselAndCategories()),
-            SliverToBoxAdapter(child: PopularProducts()),
+            const SliverToBoxAdapter(child: OffersCarouselAndCategories()),
+            const SliverToBoxAdapter(child: PopularProducts()),
             // const SliverPadding(
             //   padding: EdgeInsets.symmetric(vertical: defaultPadding * 1.5),
             //   sliver: SliverToBoxAdapter(child: FlashSale()),
@@ -43,28 +45,34 @@ class HomeScreen extends StatelessWidget {
             //     ],
             //   ),
             // ),
-            SliverToBoxAdapter(child: BestSellers()),
-            SliverToBoxAdapter(child: MostPopular()),
-            // SliverToBoxAdapter(
-            //   child: Column(
-            //     children: [
-            //       const SizedBox(height: defaultPadding * 1.5),
+            const SliverToBoxAdapter(child: BestSellers()),
+            const SliverToBoxAdapter(child: MostPopular()),
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  const SizedBox(height: defaultPadding * 1.5),
 
-            //       const SizedBox(height: defaultPadding / 4),
-            //       // While loading use 👇
-            //       // const BannerSSkelton(),
-            //       BannerSStyle5(
-            //         title: "Black \nfriday",
-            //         subtitle: "50% Off",
-            //         bottomText: "Collection".toUpperCase(),
-            //         press: () {
-            //           Navigator.pushNamed(context, onSaleScreenRoute);
-            //         },
-            //       ),
-            //       const SizedBox(height: defaultPadding / 4),
-            //     ],
-            //   ),
-            // ),
+                  const SizedBox(height: defaultPadding / 4),
+                  // While loading use 👇
+                  // const BannerSSkelton(),
+                  BannerSStyle5(
+                    image: "https://i.imgur.com/${[
+                      "9bZr;W8",
+                      "FfV;W3M",
+                      "Lp0D6k5",
+                      "UM3GdWg"
+                    ][Random().nextInt(4)]}.png",
+                    title: "Black \nfriday",
+                    subtitle: "50% Off",
+                    bottomText: "Collection".toUpperCase(),
+                    press: () {
+                      Navigator.pushNamed(context, womensScreenRoute);
+                    },
+                  ),
+                  const SizedBox(height: defaultPadding / 4),
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -20,14 +20,14 @@ final List<CategoryModel> demoCategoriesWithImage = [
 
 final List<CategoryModel> demoCategories = [
   CategoryModel(
-    title: "On sale",
-    svgSrc: "assets/icons/Sale.svg",
+    title: "Electronics",
+    svgSrc: "assets/icons/world_map.svg",
     subCategories: [
-      CategoryModel(title: "All Clothing"),
+      CategoryModel(title: "All Electronics"),
       CategoryModel(title: "New In"),
-      CategoryModel(title: "Coats & Jackets"),
-      CategoryModel(title: "Dresses"),
-      CategoryModel(title: "Jeans"),
+      CategoryModel(title: "Computers"),
+      CategoryModel(title: "Smartphones"),
+      CategoryModel(title: "Cameras"),
     ],
   ),
   CategoryModel(
@@ -39,21 +39,23 @@ final List<CategoryModel> demoCategories = [
       CategoryModel(title: "Coats & Jackets"),
     ],
   ),
-  CategoryModel(
-    title: "Kids",
-    svgSrc: "assets/icons/Child.svg",
-    subCategories: [
-      CategoryModel(title: "All Clothing"),
-      CategoryModel(title: "New In"),
-      CategoryModel(title: "Coats & Jackets"),
-    ],
-  ),
+  // CategoryModel(
+  //   title: "Kids",
+  //   svgSrc: "assets/icons/Child.svg",
+  //   subCategories: [
+  //     CategoryModel(title: "All Clothing"),
+  //     CategoryModel(title: "New In"),
+  //     CategoryModel(title: "Coats & Jackets"),
+  //   ],
+  // ),
   CategoryModel(
     title: "Accessories",
     svgSrc: "assets/icons/Accessories.svg",
     subCategories: [
-      CategoryModel(title: "All Clothing"),
+      CategoryModel(title: "All Accessories"),
       CategoryModel(title: "New In"),
+      CategoryModel(title: "Watches"),
+      CategoryModel(title: "Jewelry"),
     ],
   ),
 ];

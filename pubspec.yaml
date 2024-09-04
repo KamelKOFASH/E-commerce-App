@@ -21,6 +21,8 @@ dependencies:
   animations: ^2.0.11
   url_launcher: ^6.3.0
   http: ^1.2.2
+  awesome_icons: ^1.1.0
+  modal_progress_hud_nsn: ^0.5.1
 
 dev_dependencies:
   flutter_test:

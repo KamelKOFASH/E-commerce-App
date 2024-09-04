@@ -9,8 +9,8 @@ class UnitPrice extends StatelessWidget {
     this.priceAfterDiscount,
   });
 
-  final double price;
-  final double? priceAfterDiscount;
+  final dynamic price;
+  final dynamic priceAfterDiscount;
 
   @override
   Widget build(BuildContext context) {

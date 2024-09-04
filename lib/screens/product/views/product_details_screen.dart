@@ -1,3 +1,5 @@
+import 'package:awesome_icons/awesome_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shop/components/buy_full_ui_kit.dart';
@@ -37,13 +39,14 @@ class ProductDetailsScreen extends StatelessWidget {
                 customModalBottomSheet(
                   context,
                   height: MediaQuery.of(context).size.height * 0.92,
-                  child: const ProductBuyNowScreen(),
+                  child: ProductBuyNowScreen(
+                    product: product,
+                  ),
                 );
               },
             )
           :
-
-          /// If profuct is not available then show [NotifyMeCard]
+          //* If profuct is not available then show [NotifyMeCard]
           NotifyMeCard(
               isNotify: false,
               onChanged: (value) {},
@@ -65,6 +68,30 @@ class ProductDetailsScreen extends StatelessWidget {
             ProductImages(
               images: [product.image, product.image, product.image],
             ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Edit Product'),
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            updateProductScreenRoute,
+                            arguments: {'product': product},
+                          );
+                        },
+                        icon: const Icon(
+                          size: 18,
+                          FontAwesomeIcons.edit,
+                          color: Colors.black,
+                        )),
+                  ],
+                ),
+              ),
+            ),
             ProductInfo(
               brand: product.category,
               title: product.title,
@@ -77,12 +104,12 @@ class ProductDetailsScreen extends StatelessWidget {
               svgSrc: "assets/icons/Product.svg",
               title: "Product Details",
               press: () {
-                customModalBottomSheet(
-                  context,
-                  height: MediaQuery.of(context).size.height * 0.92,
-                  child: const BuyFullKit(
-                      images: ["assets/screens/Product detail.png"]),
-                );
+                // customModalBottomSheet(
+                //   context,
+                //   height: MediaQuery.of(context).size.height * 0.92,
+                //   child: const BuyFullKit(
+                //       images: ["assets/screens/Product detail.png"]),
+                // );
               },
             ),
             ProductListTile(

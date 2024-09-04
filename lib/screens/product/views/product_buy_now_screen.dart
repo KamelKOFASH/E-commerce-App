@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop/components/cart_button.dart';
 import 'package:shop/components/custom_modal_bottom_sheet.dart';
 import 'package:shop/components/network_image_with_loader.dart';
+import 'package:shop/models/product_model.dart';
 import 'package:shop/screens/product/views/added_to_cart_message_screen.dart';
 import 'package:shop/screens/product/views/components/product_list_tile.dart';
 import 'package:shop/screens/product/views/location_permission_store_availability_screen.dart';
@@ -15,18 +16,21 @@ import 'components/selected_size.dart';
 import 'components/unit_price.dart';
 
 class ProductBuyNowScreen extends StatefulWidget {
-  const ProductBuyNowScreen({super.key});
-
+  const ProductBuyNowScreen({super.key, required this.product});
+  final ProductModel2 product;
   @override
   _ProductBuyNowScreenState createState() => _ProductBuyNowScreenState();
 }
 
 class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
+  int quantity = 1;
+  int colorIndex = 0;
+  int sizeIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CartButton(
-        price: 269.4,
+        price: widget.product.price,
         title: "Add to cart",
         subTitle: "Total price",
         press: () {
@@ -47,7 +51,7 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
               children: [
                 const BackButton(),
                 Text(
-                  "Sleeveless Ruffle",
+                  '${widget.product.title.substring(0, 10)}...',
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 IconButton(
@@ -61,12 +65,14 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
           Expanded(
             child: CustomScrollView(
               slivers: [
-                const SliverToBoxAdapter(
+                SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: defaultPadding),
                     child: AspectRatio(
-                      aspectRatio: 1.05,
-                      child: NetworkImageWithLoader(productDemoImg1),
+                      aspectRatio: 1.75,
+                      child: NetworkImageWithLoader(
+                          fit: BoxFit.contain, widget.product.image),
                     ),
                   ),
                 ),
@@ -76,16 +82,24 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Expanded(
+                        Expanded(
                           child: UnitPrice(
-                            price: 145,
-                            priceAfterDiscount: 134.7,
+                            price: widget.product.price + 100,
+                            priceAfterDiscount: widget.product.price,
                           ),
                         ),
                         ProductQuantity(
-                          numOfItem: 2,
-                          onIncrement: () {},
-                          onDecrement: () {},
+                          numOfItem: quantity,
+                          onIncrement: () {
+                            setState(() {
+                              quantity++;
+                            });
+                          },
+                          onDecrement: () {
+                            setState(() {
+                              quantity--;
+                            });
+                          },
                         ),
                       ],
                     ),
@@ -101,15 +115,23 @@ class _ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                       Color(0xFF9FE1DD),
                       Color(0xFFC482DB),
                     ],
-                    selectedColorIndex: 2,
-                    press: (value) {},
+                    selectedColorIndex: colorIndex,
+                    press: (value) {
+                      setState(() {
+                        colorIndex = value;
+                      });
+                    },
                   ),
                 ),
                 SliverToBoxAdapter(
                   child: SelectedSize(
                     sizes: const ["S", "M", "L", "XL", "XXL"],
-                    selectedIndex: 1,
-                    press: (value) {},
+                    selectedIndex: sizeIndex,
+                    press: (value) {
+                      setState(() {
+                        sizeIndex = value;
+                      });
+                    },
                   ),
                 ),
                 SliverPadding(

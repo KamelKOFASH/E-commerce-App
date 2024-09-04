@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shop/route/route_constants.dart';
 import 'package:shop/route/router.dart' as router;
+import 'package:shop/route/screen_export.dart';
 import 'package:shop/screens/home/views/home_screen.dart';
 import 'package:shop/theme/app_theme.dart';
+
+import 'screens/update_product/update_product.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -22,9 +24,9 @@ class MyApp extends StatelessWidget {
       // Dark theme is inclided in the Full template
       themeMode: ThemeMode.light,
       onGenerateRoute: router.generateRoute,
-      // ! i remove it till i finish development  
-     // initialRoute: onbordingScreenRoute,
-     home: const HomeScreen(),
+      // ! i remove it till i finish development
+      // initialRoute: onbordingScreenRoute,
+      home: HomeScreen(),
     );
   }
 }

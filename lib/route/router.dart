@@ -6,6 +6,7 @@ import '../screens/home/views/electronics/views/electronics_screen.dart';
 import '../screens/home/views/jewelery/views/jewelery_screen.dart';
 import '../screens/home/views/mans/views/mans_screen.dart';
 import '../screens/home/views/womens/views/womens_screen.dart';
+import '../screens/update_product/update_product.dart';
 import 'screen_export.dart';
 
 // Yuo will get 50+ screens and more once you have the full template
@@ -73,10 +74,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const OnBordingScreen(),
       );
-    // case preferredLanuageScreenRoute:
-    //   return MaterialPageRoute(
-    //     builder: (context) => const PreferredLanguageScreen(),
-    //   );
+
     case logInScreenRoute:
       return MaterialPageRoute(
         builder: (context) => const LoginScreen(),
@@ -85,14 +83,170 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const SignUpScreen(),
       );
-    // case profileSetupScreenRoute:
-    //   return MaterialPageRoute(
-    //     builder: (context) => const ProfileSetupScreen(),
-    //   );
+
     case passwordRecoveryScreenRoute:
       return MaterialPageRoute(
         builder: (context) => const PasswordRecoveryScreen(),
       );
+
+    case productDetailsScreenRoute:
+      final args = settings.arguments as Map<String, dynamic>;
+      final isProductAvailable = args['isProductAvailable'] as bool;
+      final product = args['product'] as ProductModel2;
+      return MaterialPageRoute(
+        builder: (context) => ProductDetailsScreen(
+            isProductAvailable: isProductAvailable, product: product),
+      );
+    case updateProductScreenRoute:
+      final args = settings.arguments as Map<String, dynamic>;
+      final product = args['product'] as ProductModel2;
+      return MaterialPageRoute(
+        builder: (context) => UpdateProductScreen(product: product),
+      );
+    case productReviewsScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const ProductReviewsScreen(),
+      );
+
+    case homeScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const HomeScreen(),
+      );
+
+    case discoverScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const DiscoverScreen(),
+      );
+    case onSaleScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const OnSaleScreen(),
+      );
+    case electronicsScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const ElectronicsScreen(),
+      );
+    case mensScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const MensScreen(),
+      );
+    case womensScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const WomensScreen(),
+      );
+    case jewelleryScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const JewelleryScreen(),
+      );
+    case kidsScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const KidsScreen(),
+      );
+    case searchScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const SearchScreen(),
+      );
+
+    case bookmarkScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const BookmarkScreen(),
+      );
+    case entryPointScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const EntryPoint(),
+      );
+    case profileScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const ProfileScreen(),
+      );
+    case userInfoScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const UserInfoScreen(),
+      );
+
+    case notificationsScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const NotificationsScreen(),
+      );
+    case noNotificationScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const NoNotificationScreen(),
+      );
+    case enableNotificationScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const EnableNotificationScreen(),
+      );
+    case notificationOptionsScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const NotificationOptionsScreen(),
+      );
+
+    case addressesScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const AddressesScreen(),
+      );
+
+    case ordersScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const OrdersScreen(),
+      );
+
+    case preferencesScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const PreferencesScreen(),
+      );
+
+    case emptyWalletScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const EmptyWalletScreen(),
+      );
+    case walletScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const WalletScreen(),
+      );
+    case cartScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const CartScreen(),
+      );
+    // case paymentMethodScreenRoute:
+    //   return MaterialPageRoute(
+    //     builder: (context) => const PaymentMethodScreen(),
+    //   );
+    // case addNewCardScreenRoute:
+    //   return MaterialPageRoute(
+    //     builder: (context) => const AddNewCardScreen(),
+    //   );
+    // case thanksForOrderScreenRoute:
+    //   return MaterialPageRoute(
+    //     builder: (context) => const ThanksForOrderScreen(),
+    //   );
+    // case getHelpScreenRoute:
+    //   return MaterialPageRoute(
+    //     builder: (context) => const GetHelpScreen(),
+    //   );
+    // case addReviewsScreenRoute:
+    //   return MaterialPageRoute(
+    //     builder: (context) => const AddReviewScreen(),
+    //   );
+    // case chatScreenRoute:
+    //   return MaterialPageRoute(
+    //     builder: (context) => const ChatScreen(),
+    //   );
+    // case searchHistoryScreenRoute:
+    //   return MaterialPageRoute(
+    //     builder: (context) => const SearchHistoryScreen(),
+    //   );
+    // case brandScreenRoute:
+    //   return MaterialPageRoute(
+    //     builder: (context) => const BrandScreen(),
+    //   );
+    // case discoverWithImageScreenRoute:
+    //   return MaterialPageRoute(
+    //     builder: (context) => const DiscoverWithImageScreen(),
+    //   );
+    // case subDiscoverScreenRoute:
+    //   return MaterialPageRoute(
+    //     builder: (context) => const SubDiscoverScreen(),
+    //   );
     // case verificationMethodScreenRoute:
     //   return MaterialPageRoute(
     //     builder: (context) => const VerificationMethodScreen(),
@@ -133,142 +287,18 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //   return MaterialPageRoute(
     //     builder: (context) => const SetupFaceIdScreen(),
     //   );
-    case productDetailsScreenRoute:
-      final args = settings.arguments as Map<String, dynamic>;
-      final isProductAvailable = args['isProductAvailable'] as bool;
-      final product = args['product'] as ProductModel2;
-      return MaterialPageRoute(
-        builder: (context) => ProductDetailsScreen(
-            isProductAvailable: isProductAvailable, product: product),
-      );
-    case productReviewsScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const ProductReviewsScreen(),
-      );
-    // case addReviewsScreenRoute:
+    // case preferredLanuageScreenRoute:
     //   return MaterialPageRoute(
-    //     builder: (context) => const AddReviewScreen(),
+    //     builder: (context) => const PreferredLanguageScreen(),
     //   );
-    case homeScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const HomeScreen(),
-      );
-    // case brandScreenRoute:
+    // case profileSetupScreenRoute:
     //   return MaterialPageRoute(
-    //     builder: (context) => const BrandScreen(),
+    //     builder: (context) => const ProfileSetupScreen(),
     //   );
-    // case discoverWithImageScreenRoute:
+    // case emptyPaymentScreenRoute:
     //   return MaterialPageRoute(
-    //     builder: (context) => const DiscoverWithImageScreen(),
+    //     builder: (context) => const EmptyPaymentScreen(),
     //   );
-    // case subDiscoverScreenRoute:
-    //   return MaterialPageRoute(
-    //     builder: (context) => const SubDiscoverScreen(),
-    //   );
-    case discoverScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const DiscoverScreen(),
-      );
-    case onSaleScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const OnSaleScreen(),
-      );
-    case electronicsScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const ElectronicsScreen(),
-      );
-    case mensScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const MensScreen(),
-      );
-    case womensScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const WomensScreen(),
-      );
-    case jewelleryScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const JewelleryScreen(),
-      );
-    case kidsScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const KidsScreen(),
-      );
-    case searchScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const SearchScreen(),
-      );
-    // case searchHistoryScreenRoute:
-    //   return MaterialPageRoute(
-    //     builder: (context) => const SearchHistoryScreen(),
-    //   );
-    case bookmarkScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const BookmarkScreen(),
-      );
-    case entryPointScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const EntryPoint(),
-      );
-    case profileScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const ProfileScreen(),
-      );
-    // case getHelpScreenRoute:
-    //   return MaterialPageRoute(
-    //     builder: (context) => const GetHelpScreen(),
-    //   );
-    // case chatScreenRoute:
-    //   return MaterialPageRoute(
-    //     builder: (context) => const ChatScreen(),
-    //   );
-    case userInfoScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const UserInfoScreen(),
-      );
-    // case currentPasswordScreenRoute:
-    //   return MaterialPageRoute(
-    //     builder: (context) => const CurrentPasswordScreen(),
-    //   );
-    // case editUserInfoScreenRoute:
-    //   return MaterialPageRoute(
-    //     builder: (context) => const EditUserInfoScreen(),
-    //   );
-    case notificationsScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const NotificationsScreen(),
-      );
-    case noNotificationScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const NoNotificationScreen(),
-      );
-    case enableNotificationScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const EnableNotificationScreen(),
-      );
-    case notificationOptionsScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const NotificationOptionsScreen(),
-      );
-    // case selectLanguageScreenRoute:
-    //   return MaterialPageRoute(
-    //     builder: (context) => const SelectLanguageScreen(),
-    //   );
-    // case noAddressScreenRoute:
-    //   return MaterialPageRoute(
-    //     builder: (context) => const NoAddressScreen(),
-    //   );
-    case addressesScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const AddressesScreen(),
-      );
-    // case addNewAddressesScreenRoute:
-    //   return MaterialPageRoute(
-    //     builder: (context) => const AddNewAddressScreen(),
-    //   );
-    case ordersScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const OrdersScreen(),
-      );
     // case orderProcessingScreenRoute:
     //   return MaterialPageRoute(
     //     builder: (context) => const OrderProcessingScreen(),
@@ -289,37 +319,25 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     //   return MaterialPageRoute(
     //     builder: (context) => const CancledOrdersScreen(),
     //   );
-    case preferencesScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const PreferencesScreen(),
-      );
-    // case emptyPaymentScreenRoute:
+    // case selectLanguageScreenRoute:
     //   return MaterialPageRoute(
-    //     builder: (context) => const EmptyPaymentScreen(),
+    //     builder: (context) => const SelectLanguageScreen(),
     //   );
-    case emptyWalletScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const EmptyWalletScreen(),
-      );
-    case walletScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const WalletScreen(),
-      );
-    case cartScreenRoute:
-      return MaterialPageRoute(
-        builder: (context) => const CartScreen(),
-      );
-    // case paymentMethodScreenRoute:
+    // case noAddressScreenRoute:
     //   return MaterialPageRoute(
-    //     builder: (context) => const PaymentMethodScreen(),
+    //     builder: (context) => const NoAddressScreen(),
     //   );
-    // case addNewCardScreenRoute:
+    // case addNewAddressesScreenRoute:
     //   return MaterialPageRoute(
-    //     builder: (context) => const AddNewCardScreen(),
+    //     builder: (context) => const AddNewAddressScreen(),
     //   );
-    // case thanksForOrderScreenRoute:
+    // case currentPasswordScreenRoute:
     //   return MaterialPageRoute(
-    //     builder: (context) => const ThanksForOrderScreen(),
+    //     builder: (context) => const CurrentPasswordScreen(),
+    //   );
+    // case editUserInfoScreenRoute:
+    //   return MaterialPageRoute(
+    //     builder: (context) => const EditUserInfoScreen(),
     //   );
     default:
       return MaterialPageRoute(
