@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop/constants.dart';
 import 'package:shop/route/screen_export.dart';
+import 'package:shop/splash_screen.dart';
 
 class EntryPoint extends StatefulWidget {
   const EntryPoint({super.key});
@@ -12,13 +13,13 @@ class EntryPoint extends StatefulWidget {
 }
 
 class _EntryPointState extends State<EntryPoint> {
-  final List _pages = const [
-    HomeScreen(),
-    DiscoverScreen(),
-    BookmarkScreen(),
-    // EmptyCartScreen(), // if Cart is empty
-    CartScreen(),
-    ProfileScreen(),
+  final List _pages = [
+    const HomeScreen(),
+    const DiscoverScreen(),
+    const BookmarkScreen(),
+    // EmptyCartScreen(), //? if Cart is empty
+    const CartScreen(),
+    const ProfileScreen(),
   ];
   int _currentIndex = 0;
 

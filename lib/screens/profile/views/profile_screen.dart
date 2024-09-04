@@ -17,9 +17,10 @@ class ProfileScreen extends StatelessWidget {
       body: ListView(
         children: [
           ProfileCard(
-            name: "Sepide",
-            email: "theflutterway@gmail.com",
-            imageSrc: "https://i.imgur.com/IXnwbLk.png",
+            name: "Mustafa",
+            email: "mustafakofash93@gmail.com",
+            imageSrc:
+                "https://avatars.githubusercontent.com/u/179228739?s=96&v=4",
             // proLableText: "Sliver",
             // isPro: true, if the user is pro
             press: () {
@@ -156,7 +157,9 @@ class ProfileScreen extends StatelessWidget {
 
           // Log Out
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, logInScreenRoute);
+            },
             minLeadingWidth: 24,
             leading: SvgPicture.asset(
               "assets/icons/Logout.svg",

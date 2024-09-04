@@ -3,6 +3,7 @@ import 'package:shop/route/route_constants.dart';
 import 'package:shop/route/router.dart' as router;
 import 'package:shop/route/screen_export.dart';
 import 'package:shop/screens/home/views/home_screen.dart';
+import 'package:shop/splash_screen.dart';
 import 'package:shop/theme/app_theme.dart';
 
 import 'screens/update_product/update_product.dart';
@@ -19,14 +20,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Shop Template by The Flutter Way',
+      title: 'Shop App',
       theme: AppTheme.lightTheme(context),
       // Dark theme is inclided in the Full template
       themeMode: ThemeMode.light,
       onGenerateRoute: router.generateRoute,
       // ! i remove it till i finish development
-      // initialRoute: onbordingScreenRoute,
-      home: HomeScreen(),
+      initialRoute: splashScreenRoute,
+      // home: AnimatedSplashScreen(),
     );
   }
 }

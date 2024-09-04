@@ -1,0 +1,13 @@
+flutter_native_splash:
+  color: "#ffffff" # Background color of the splash screen
+  image: assets/logo/Shoplon.png # Path to your SVG logo
+  android: true
+  ios: true
+  web: true
+  android_gravity: center
+  ios_content_mode: center
+  web_image_mode: center
+  fullscreen: true
+  android: true
+  ios: true
+  web: true

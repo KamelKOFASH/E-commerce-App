@@ -4,7 +4,7 @@ import '../helper/api.dart';
 
 class UpdateProductService {
   Future<ProductModel2> updateProduct({
-    required String id,
+    required dynamic id,
     required String title,
     required String description,
     required String price,

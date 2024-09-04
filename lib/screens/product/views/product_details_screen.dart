@@ -22,7 +22,7 @@ import 'components/product_list_tile.dart';
 import '../../../components/review_card.dart';
 import 'product_buy_now_screen.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen(
       {super.key, this.isProductAvailable = true, required this.product});
 
@@ -30,17 +30,22 @@ class ProductDetailsScreen extends StatelessWidget {
   final ProductModel2 product;
 
   @override
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+}
+
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: isProductAvailable
+      bottomNavigationBar: widget.isProductAvailable
           ? CartButton(
-              price: product.price,
+              price: widget.product.price,
               press: () {
                 customModalBottomSheet(
                   context,
                   height: MediaQuery.of(context).size.height * 0.92,
                   child: ProductBuyNowScreen(
-                    product: product,
+                    product: widget.product,
                   ),
                 );
               },
@@ -59,14 +64,25 @@ class ProductDetailsScreen extends StatelessWidget {
               floating: true,
               actions: [
                 IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset("assets/icons/Bookmark.svg",
-                      color: Theme.of(context).textTheme.bodyLarge!.color),
+                  icon: Icon(widget.product.bookmark == true
+                      ? Icons.bookmark
+                      : Icons.bookmark_border),
+                  onPressed: () {
+                    setState(() {
+                      widget.product.bookmark = widget.product.bookmark != null
+                          ? !widget.product.bookmark!
+                          : true;
+                    });
+                  },
                 ),
               ],
             ),
             ProductImages(
-              images: [product.image, product.image, product.image],
+              images: [
+                widget.product.image,
+                widget.product.image,
+                widget.product.image
+              ],
             ),
             SliverToBoxAdapter(
               child: Padding(
@@ -74,13 +90,13 @@ class ProductDetailsScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Edit Product'),
+                    const Text('Edit Product'),
                     IconButton(
                         onPressed: () {
                           Navigator.pushNamed(
                             context,
                             updateProductScreenRoute,
-                            arguments: {'product': product},
+                            arguments: {'product': widget.product},
                           );
                         },
                         icon: const Icon(
@@ -93,12 +109,12 @@ class ProductDetailsScreen extends StatelessWidget {
               ),
             ),
             ProductInfo(
-              brand: product.category,
-              title: product.title,
-              isAvailable: isProductAvailable,
-              description: product.description,
-              rating: product.rating!.rate,
-              numOfReviews: product.rating!.count,
+              brand: widget.product.category,
+              title: widget.product.title,
+              isAvailable: widget.isProductAvailable,
+              description: widget.product.description,
+              rating: widget.product.rating!.rate,
+              numOfReviews: widget.product.rating!.count,
             ),
             ProductListTile(
               svgSrc: "assets/icons/Product.svg",
@@ -141,8 +157,8 @@ class ProductDetailsScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(defaultPadding),
                 child: ReviewCard(
-                  rating: product.rating!.rate,
-                  numOfReviews: product.rating!.count,
+                  rating: widget.product.rating!.rate,
+                  numOfReviews: widget.product.rating!.count,
                   numOfFiveStar: 80,
                   numOfFourStar: 30,
                   numOfThreeStar: 5,
@@ -171,7 +187,7 @@ class ProductDetailsScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: FutureBuilder<List<ProductModel2>>(
                 future: GetCategoryByNameService()
-                    .getCategoryByName(product.category),
+                    .getCategoryByName(widget.product.category),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const ProductsSkelton();

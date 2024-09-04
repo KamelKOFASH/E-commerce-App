@@ -4,7 +4,6 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../components/network_image_with_loader.dart';
 import '../../constants.dart';
 import '../../services/update_product_service.dart';
-import '../product/views/components/product_images.dart';
 
 class UpdateProductScreen extends StatefulWidget {
   UpdateProductScreen({
@@ -12,7 +11,7 @@ class UpdateProductScreen extends StatefulWidget {
     required this.product,
   });
 
-  ProductModel2 product;
+  final ProductModel2 product;
 
   @override
   State<UpdateProductScreen> createState() => _UpdateProductScreenState();
@@ -23,6 +22,15 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
   late String title;
   late String description;
   late String price;
+
+  @override
+  void initState() {
+    super.initState();
+    title = widget.product.title;
+    description = widget.product.description;
+    price = widget.product.price.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ModalProgressHUD(
@@ -45,15 +53,20 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                 SizedBox(
                   height: 200,
                   width: 200,
-                  child: NetworkImageWithLoader(widget.product.image,
-                      fit: BoxFit.contain, radius: defaultBorderRadious),
+                  child: NetworkImageWithLoader(
+                    widget.product.image,
+                    fit: BoxFit.contain,
+                    radius: defaultBorderRadious,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
-                  initialValue: widget.product.title,
+                  initialValue: title,
                   maxLines: 2,
                   onChanged: (value) {
-                    title = value;
+                    setState(() {
+                      title = value;
+                    });
                   },
                   decoration: const InputDecoration(
                     labelText: 'Product Name',
@@ -62,11 +75,13 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
-                  initialValue: widget.product.description,
+                  initialValue: description,
                   onChanged: (value) {
-                    description = value;
+                    setState(() {
+                      description = value;
+                    });
                   },
-                  maxLines: 5,
+                  maxLines: 8,
                   decoration: const InputDecoration(
                     labelText: 'Product Description',
                     border: OutlineInputBorder(),
@@ -74,9 +89,11 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
-                  initialValue: widget.product.price.toString(),
+                  initialValue: price,
                   onChanged: (value) {
-                    price = value;
+                    setState(() {
+                      price = value;
+                    });
                   },
                   decoration: const InputDecoration(
                     labelText: 'Price',
@@ -86,12 +103,13 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {
-                    try {
+                  onPressed: () async {
+                    setState(() {
                       isLoading = true;
-                      setState(() {});
-                      updateProduct();
+                    });
 
+                    try {
+                      await updateProduct();
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Product updated successfully'),
@@ -99,20 +117,20 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                         ),
                       );
                     } catch (e) {
-                      setState(() {});
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text(e.toString()),
+                          content: Text('Failed to update product: $e'),
                           backgroundColor: Colors.red,
                         ),
                       );
-                      isLoading = false;
-                      setState(() {});
-                      print(e);
+                    } finally {
+                      setState(() {
+                        isLoading = false;
+                      });
                     }
                   },
                   child: const Text('Update'),
-                )
+                ),
               ],
             ),
           ),
@@ -121,13 +139,14 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
     );
   }
 
-  void updateProduct() {
-    UpdateProductService().updateProduct(
-        id: widget.product.id.toString(),
-        title: title,
-        description: description,
-        price: price,
-        category: widget.product.category,
-        image: widget.product.image);
+  Future<void> updateProduct() async {
+    await UpdateProductService().updateProduct(
+      id: widget.product.id.toString(),
+      title: title,
+      description: description,
+      price: price,
+      category: widget.product.category,
+      image: widget.product.image,
+    );
   }
 }

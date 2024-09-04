@@ -23,7 +23,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           children: [
             Image.asset(
-              "assets/images/login_dark.png",
+              height: MediaQuery.of(context).size.height * 0.35,
+              width: double.infinity,
+              "assets/images/loginpic.jpg",
               fit: BoxFit.cover,
             ),
             Padding(
@@ -51,9 +53,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: size.height > 700
-                        ? size.height * 0.1
-                        : defaultPadding,
+                    height:
+                        size.height > 700 ? size.height * 0.1 : defaultPadding,
                   ),
                   ElevatedButton(
                     onPressed: () {

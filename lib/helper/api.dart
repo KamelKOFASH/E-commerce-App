@@ -53,8 +53,10 @@ class Api {
     if (token != null) {
       body.addAll({"Authorization": "Bearer $token"});
     }
+    print('Url = ${url} , body = $body , token = $token');
     http.Response response = await http.put(Uri.parse(url), body: body);
     if (response.statusCode == 200) {
+      print(response.body);
       return jsonDecode(response.body);
     } else {
       throw Exception(

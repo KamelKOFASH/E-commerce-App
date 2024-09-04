@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop/entry_point.dart';
+import 'package:shop/splash_screen.dart';
 
 import '../models/product_model.dart';
 import '../screens/home/views/electronics/views/electronics_screen.dart';
@@ -70,6 +71,10 @@ import 'screen_export.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
+    case splashScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => AnimatedSplashScreen(),
+      );
     case onbordingScreenRoute:
       return MaterialPageRoute(
         builder: (context) => const OnBordingScreen(),
