@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 // Just for demo
 const productDemoImg1 = "https://i.imgur.com/CGCyp1d.png";
 const productDemoImg2 = "https://i.imgur.com/AkzWQuJ.png";
@@ -77,5 +77,21 @@ final emaildValidator = MultiValidator([
   RequiredValidator(errorText: 'Email is required'),
   EmailValidator(errorText: "Enter a valid email address"),
 ]);
+
+void showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const Center(
+          child: SpinKitCircle(
+            duration: Duration(milliseconds: 800),
+            color: Colors.blue,
+            size: 50.0,
+          ),
+        );
+      },
+    );
+  }
 
 const pasNotMatchErrorText = "passwords do not match";

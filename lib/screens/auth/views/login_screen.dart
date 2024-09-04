@@ -57,8 +57,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         size.height > 700 ? size.height * 0.1 : defaultPadding,
                   ),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
+                        showLoadingDialog(context);
+                        await Future.delayed(
+                            const Duration(seconds: 2)); // Simulate loading
                         Navigator.pushNamedAndRemoveUntil(
                             context,
                             entryPointScreenRoute,
